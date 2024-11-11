@@ -33,11 +33,11 @@ public List<Category> getCategories()
 	return list;
 }
 
-public Category getCategoryById (int cid) {
+public Category getCategoryById (int catId) {
 	Category cat= null;
 	try {
 		Session session= this.factory.openSession();
-		cat= session.get(Category.class, cid);
+		cat= session.get(Category.class, catId);
 		session.close();
 		
 	}catch (Exception e) {

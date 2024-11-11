@@ -1,3 +1,80 @@
-.custom-bg{
+.custom-bg {
 	background: #283593 !important;
+}
+
+.list-group-item.active {
+	background: #283593 !important;
+	border-color: #283593 !important;
+}
+
+.discount-label {
+	color: #FF0000;
+	font-size: 10px !important;
+	font-style: italic !important;
+}
+
+#toast {
+	min-width: 300px;
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	margin-left: -120px;
+	background: #333;
+	padding: 15px;
+	color: white;
+	text-align: center;
+	z-index: 1;
+	font-size: 18px;
+	visibility: hidden;
+	box-shadow: 0px 0px 100px #000;
+}
+
+#toast.display {
+	visibility: visible;
+	animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes fadeIn {
+	from { 
+	bottom: 0;
+	opacity: 0;
+}
+to {
+	bottom: 30px;
+	opacity: 1;
+}
+}
+@keyframes fadeOut {
+	from { 
+	bottom: 30px;
+	opacity: 1;
+}
+to {
+	bottom: 0;
+	opacity: 0;
+}
+
+}
+.product-card {
+	background-color: rgba(255, 255, 255, 0.7); /* 30% transparency */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	/* Optional shadow for better visibility */
+	border: 1px solid #283593;
+	border-radius: 8px; /* Rounded corners for better design */
+}
+
+.product-card:hover {
+	background-color: rgba(255, 255, 255, 0.9);
+	/* Slightly less transparent on hover */
+	background-color: #e2e2e2;
+	cursor: pointer;
+}
+
+.price-cut {
+	text-decoration: line-through;
+	color: #888;
+}
+
+.price-label {
+	font-weight: bold;
 }

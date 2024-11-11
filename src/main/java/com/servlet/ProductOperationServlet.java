@@ -27,7 +27,7 @@ public class ProductOperationServlet extends HttpServlet {
        
     public ProductOperationServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated c onstructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,7 +72,7 @@ public class ProductOperationServlet extends HttpServlet {
 			int  pPrice= Integer.parseInt( request.getParameter("pPrice"));
 			int  pDiscount= Integer.parseInt( request.getParameter("pDiscount"));
 			int  pQuantity= Integer.parseInt( request.getParameter("pQuantity"));
-			int  catId= Integer.parseInt( request.getParameter("pPrice"));
+			int  catId= Integer.parseInt( request.getParameter("catId"));
 			Part part = request.getPart("pPic");
 		
 			Product p = new Product();
@@ -87,27 +87,26 @@ public class ProductOperationServlet extends HttpServlet {
 			//Get category by ID
 			CategoryDAO cdao= new CategoryDAO(FactoryProvider.getFactory());
 			Category category= cdao.getCategoryById(catId);
-			
+		
 			p.setCategory(category);
 			
 			//SAVE PRODUCT in Database so we will require NEW PRODUCT DAO
 			ProductDAO pdao= new ProductDAO(FactoryProvider.getFactory());
-		     pdao.saveProduct(p);
+		    pdao.saveProduct(p);
 			
 			//PIC UPLOAD
-			//First we have to find the path i.e.  images-->product  to upload photo for that we have to reach till our website first
-			String path=request.getRealPath("image")+File.separator+"products"+File.separator+part.getSubmittedFileName();
+			//Here we will upload the category or product photo 
+			String path = request.getRealPath("image")+File.separator+"Products"+File.separator+part.getSubmittedFileName();
 			System.out.println(path);
-			//UPload pic code
+			//Uploading Code on the path to store image
 			FileOutputStream fos= new FileOutputStream(path);
-			InputStream is = part.getInputStream();
-			//Read Data
-			byte[] data= new byte[is.available()];
+			InputStream is= part.getInputStream();
+			//Reading Data
+			byte [ ] data= new byte [is.available()];
 			is.read(data);
-			//Write Data
+			//Write data
 			fos.write(data);
 			fos.close();
-			is.close();
 			
 			
 		out.println("Product Saved Successfully");

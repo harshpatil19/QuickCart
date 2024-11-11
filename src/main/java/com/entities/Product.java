@@ -1,10 +1,12 @@
 package com.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -19,8 +21,10 @@ private String pPhoto;
 private int pPrice;
 private int pDiscount;
 private int pQuantity;
-@ManyToOne
+@ManyToOne (cascade = CascadeType.PERSIST)
+@JoinColumn(name="CategoryId")
 private Category category;
+
 public Product(String pName, String pDesc, String pPhoto, int pPrice, int pDiscount, int pQuantity, Category category) {
 	super();
 	this.pName = pName;
@@ -91,6 +95,13 @@ public String toString() {
 	return "Product [pId=" + pId + ", pName=" + pName + ", pDesc=" + pDesc + ", pPhoto=" + pPhoto + ", pPrice=" + pPrice
 			+ ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + "]";
 }
+
+//TO calculate the discount price. and we will fetch this entity in out index.jsp
+public int getPriceAfterDiscount() {
+	int d=(int) ((this.getpDiscount()/100.0)*this.getpPrice());   //here we have taken the discount of the product and after dividing by 100.0 we are multiplying it by the Price we entered and we have entered in the string so we are typecasting it to int
+return this.getpPrice()-d;
+}
+
 
 
 }
