@@ -1,4 +1,4 @@
-const { json } = require("express/lib/response");
+
 
 function add_to_cart(pid,pname,price){
     let cart=localStorage.getItem("cart");
@@ -29,7 +29,7 @@ function add_to_cart(pid,pname,price){
        })
        localStorage.setItem("cart",JSON.stringify(pcart));
        console.log("Product quantity is inscreased");
-       showToast(oldProduct.productName+"quantity is increased")
+       showToast(oldProduct.productName+"quantity is increased", Quantity="+oldProduct.productQuantity")
 
       }else{
             //if not present then we have to add product
@@ -54,7 +54,8 @@ function updateCart(){
         console.log("Cart is empty")
         $(".cart-items").html("(0)");   //This will print (0) whenever the cart will be empty.
         $(".cart-body").html("<h3>Your QuickCart Cart is empty </h3>"); //this will print this message whenever empty inside modal body
-        $(".checkout-btn").addClass(`disables`); //Whenever cart will be empty checkout button will be disabled.
+        $(".checkout-btn").attr('disabled',true); //Whenever cart will be empty checkout button will be disabled.
+      
     }else{
         console.log(cart);
          //here we will print the items in the cart when it is not empty
@@ -75,7 +76,8 @@ function updateCart(){
          let totalPrice=0;  //initially we have set total price to zero
          //this will traverse whole list and will update the data inside table
          cart.map((item)=>{
-            table+=`                                      //this bac-tick is important it was giving error if not used
+         //this bac-tick is important it was giving error if not used
+            table+=`                                      
             <tr>
                 <td>${item.productName}</td>
                 <td>${item.productPrice}</td>
@@ -89,9 +91,13 @@ function updateCart(){
          })
          //here we have enterd our <table> inside our cart-body means our modal body. 
          table=table+`
-         <tr><td colspan='5' class='text-right font-weight-bold m-5'>Total Price:${totalPrice}</td></tr>
-         <table>`
+          <tr>
+           <td colspan='5' class='text-right font-weight-bold'>Total Price: ${totalPrice}</td>
+        </tr>
+        </table>`;
          $(".cart-body").html(table);
+         $(".checkout-btn").attr('disabled',false) //when we again add to card after cart is empty then it will unable the checkout button from here
+         console.log("removed")
 
     }
 
@@ -102,7 +108,7 @@ function deleteItemFromCart (pid){
     let newcart=cart.filter((item => item.productId != pid))
     localStorage.setItem('cart',JSON.stringify(newcart))
     updateCart();
-    showToast("Item is removed from cart, Quantity="+oldProduct.productQuantity)
+    showToast("Item is removed from cart")
 }
 
 $(document).ready (function(){
@@ -115,4 +121,8 @@ function showToast (content){
     setTimeout(()=>{
         $("#toast").removeClass("display");
     },2000);
+}
+
+function goToCheckout(){
+    window.location="Checkout.jsp"
 }

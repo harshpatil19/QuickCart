@@ -1,9 +1,18 @@
+<%@page import="com.DAO.CategoryDAO"%>
+<%@page import="com.entities.Category"%>
+<%@page import="com.entities.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="com.helper.FactoryProvider"%>
+<%@page import="com.DAO.ProductDAO"%>
 <%@page import="com.entities.User"%>
 <%
 //to fetch the user as admin or normal and tore that object inside user1 as we have already stored Current-user in object user so we will be using user1
 User user1 = (User) session.getAttribute("Current-user");
-%>
 
+CategoryDAO cdao1 = new CategoryDAO(FactoryProvider.getFactory());
+List<Category> clist1 = cdao1.getCategories();
+	
+%>
 
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg">
 	<div class="container">
@@ -23,14 +32,19 @@ User user1 = (User) session.getAttribute("Current-user");
 					role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Categories </a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
+						<li>
+						<%
+					for (Category c : clist1) {
+					%>
+					<a href="index.jsp?category=<%=c.getCategoryId() %>" class="list-group-item list-group-item-action"><%=c.getCategoryTitle()%></a>
+					<%
+					}
+					%>
+						</li>
 					</ul></li>
 			</ul>
 			<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cart" ><i class="fas fa-cart-plus" style="font-size: 20px;"></i><span class="ml-0 cart-items" >()</span></a>
+			<li class="nav-item active"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cart" ><i class="fas fa-cart-plus" style="font-size: 20px;"></i><span class="ml-0 cart-items" >(0)</span></a>
 				</li>
 			
 				<%
@@ -47,7 +61,8 @@ User user1 = (User) session.getAttribute("Current-user");
 				%>
 				<!-- we have stored admin in object "Current-user" and we have fetched Current-user object and stored inside user1 and if we have logged in as admin or normal user
 				then we will get the navbar as name and logout -->
-				<li class="nav-item"><a class="nav-link" href="#!"><%=user1.getUserName()%></a>
+				<li class="nav-item">
+						<a class="nav-link" href="<%=  user1.getUserType().equals("admin") ? "admin.jsp" : "normal.jsp" %> "><%=user1.getUserName()%></a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="LogoutServlet">Logout</a>
 				</li>

@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary checkout-btn">Checkout</button> <!-- We have given name to the class so that afterwards we can dynamically ENABLE DISABLE it -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-primary checkout-btn" onclick="goToCheckout()">Checkout</button> <!-- We have given name to the class so that afterwards we can dynamically ENABLE DISABLE it -->
       </div>
     </div>
   </div>

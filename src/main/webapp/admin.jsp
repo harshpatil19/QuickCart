@@ -139,13 +139,15 @@ if (user == null) {
 						<!--  we have given action to this form so it will go to the servlet to perform BACKEND -->
 						<input type="hidden" name="operation" value="addcategory">
 						<!-- HIDDEN FORM FIELD -->
-						<div class="form-group mb-3"> Title
-							<input type="text" class="form-control" name="catTitle" required />
+						<div class="form-group mb-3">
+							Title <input type="text" class="form-control" name="catTitle"
+								required />
 						</div>
 
-						<div class="form-group mb-3"> Description
+						<div class="form-group mb-3">
+							Description
 							<textarea style="height: 300px;" class="form-control"
-								name="catDescription"  required> </textarea>
+								name="catDescription" required> </textarea>
 						</div>
 						<div class="container text-center">
 							<!-- Container just to align button in the center -->
@@ -173,9 +175,10 @@ if (user == null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-				<!-- ACTION to let this form to perform on Servlet for backend -->
-					<form action="ProductOperationServlet" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="operation" value="addproduct"/>
+					<!-- ACTION to let this form to perform on Servlet for backend -->
+					<form action="ProductOperationServlet" method="post"
+						enctype="multipart/form-data">
+						<input type="hidden" name="operation" value="addproduct" />
 						<!-- PRODUCT TITLE  ENTITY -->
 						<div class="form-group mb-3">
 							Title <input type="text" class="form-control" name="pName"
@@ -183,7 +186,8 @@ if (user == null) {
 						</div>
 						<!-- PRODUCT DESCRIPTION ENTITY -->
 						<div class="form-group mb-3">
-							Description <textarea style="height: 150px;" class="form-control"
+							Description
+							<textarea style="height: 150px;" class="form-control"
 								name="pDesc"></textarea>
 						</div>
 						<!-- PRODUCT PRICE  ENTITY -->
@@ -223,9 +227,8 @@ if (user == null) {
 						<!-- PRODUCT IMAGE ENTITY -->
 						<!-- To upload image we have to provide CHOOSE FILE BUTTON option so we have taken  type=file -->
 						<div class="form-group mb-3">
-							<label for="pPic">Product Image</label> 
-							<br>
-							 <input type="file" name="pPic" required />
+							<label for="pPic">Product Image</label> <br> <input
+								type="file" name="pPic" required />
 						</div>
 
 						<!-- SUBMIT BUTTON -->
@@ -237,9 +240,6 @@ if (user == null) {
 			</div>
 		</div>
 	</div>
-
-
-
-
+	<%@ include file="Components/Common_Modal.jsp"%>
 </body>
 </html>
