@@ -13,10 +13,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>QuickCart - Home</title>
 <%@include file="Components/Common_CSS_JS.jsp"%>
+<style>
+  /* Set background image for the whole page */
+  body {
+    background-image: url('image/index.jpg');
+    background-size:  cover;
+    background-position: center center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container-fluid {
+    background-color: rgba(255, 255, 255, 0.5); /* Optional: Light overlay for better readability */
+    border-radius: 10px;
+    padding: 20px;
+  }
+</style>
 </head>
 <body>
 	<%@include file="Components/Navbar.jsp"%>
 	<div class="container-fluid">
+  
 		<div class="row mt-3 mx-2">
 			<!-- mt-3 and mt-2 provides the padding and margin from all the side to centre -->
 			<!-- Inside ProductDAO we created a list of the product and we have stored it inside an object. That object we will be fetching here -->
@@ -33,7 +51,8 @@
 				list=dao.getAllProductsById(categoryId);
 			}
 			
-
+			%>
+			<%
 			CategoryDAO cdao = new CategoryDAO(FactoryProvider.getFactory());
 			List<Category> clist = cdao.getCategories();
 			%>
@@ -77,7 +96,7 @@
 								<br>
 								<span class="price-label">QuickCart Price: &#8377; <%=p.getPriceAfterDiscount() %></span>
 								<br>
-								<button class="btn custom-bg text-white" onclick="add_to_cart(<%=p.getpId()%>,' <%=p.getpName()%>','<%=p.getpPrice()%>')">Add to Cart</button>
+								<button class="btn btn-outline-primary" onclick="add_to_cart(<%=p.getpId()%>,' <%=p.getpName()%>','<%=p.getpPrice()%>')">Add to Cart</button>
 								
 							</div>
 						</div>
@@ -92,6 +111,7 @@
 			</div>
 		</div>
 	</div>
+	
 	       <%@ include file="Components/Common_Modal.jsp" %>
 </body>
 </html>

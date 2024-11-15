@@ -6,6 +6,23 @@
 <meta charset="ISO-8859-1">
 <title>User Login- Quickcart</title>
 <%@include file="Components/Common_CSS_JS.jsp"%>
+<style>
+  /* Set background image for the whole page */
+  body {
+    background-image: url('image/login.jpeg');
+    background-size:  cover;
+    background-position: center center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container-fluid {
+    background-color: rgba(255, 255, 255, 0.5); /* Optional: Light overlay for better readability */
+    border-radius: 10px;
+    padding: 20px;
+  }
+</style>
 </head>
 <body>
 	<%@include file="Components/Navbar.jsp"%>
@@ -13,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
 				<div class="card mt-3">
-					<div class="card-header custom-bg text-white">
+					<div class="card-header custom-bg text-black">
 						<h3>Login here</h3>
 					</div>
 					<div class="card-body">
@@ -46,6 +63,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 </body>
 </html>

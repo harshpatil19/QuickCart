@@ -1,80 +1,180 @@
-.custom-bg {
-	background: #283593 !important;
+/* General Styling */
+body {
+  background-image: url('image/background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  background: #0099ff; /* Set the navbar background color to the desired blue */
+  border-radius: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(30px);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar .navbar-brand {
+  font-weight: bold; /* Make "QuickCart" bold */
+  color: white !important; /* Set navbar brand color to white */
+}
+
+.navbar .nav-link {
+  color: white !important;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+
+.navbar .nav-link:hover {
+  color: #FF0000; /* Change hover color for navbar links */
+}
+
+/* Navbar Buttons and Icons in White */
+.navbar .navbar-nav .nav-item .nav-link i, /* Icon color inside navbar links */
+.navbar .navbar-nav .nav-item .nav-link span {
+  color: white !important; /* Set the icons and text inside navbar items to white */
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover i,
+.navbar .navbar-nav .nav-item .nav-link:hover span {
+  color: #FF0000 !important; /* Set icon color on hover */
+}
+
+/* Category Links Styling */
+.list-group-item {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: #0099ff; /* Change hover color of category links */
+  color: white; /* Change text color to white on hover */
+   position: relative; /* Ensure stacking context is defined */
+  z-index: 10; /* Higher z-index to appear above product cards */
 }
 
 .list-group-item.active {
-	background: #283593 !important;
-	border-color: #283593 !important;
+  background: #0099ff !important; /* Active category link color */
+  border-color: #0099ff !important;
+  color: white;
 }
 
-.discount-label {
-	color: #FF0000;
-	font-size: 10px !important;
-	font-style: italic !important;
-}
-
-#toast {
-	min-width: 300px;
-	position: fixed;
-	bottom: 30px;
-	left: 50%;
-	margin-left: -120px;
-	background: #333;
-	padding: 15px;
-	color: white;
-	text-align: center;
-	z-index: 1;
-	font-size: 18px;
-	visibility: hidden;
-	box-shadow: 0px 0px 100px #000;
-}
-
-#toast.display {
-	visibility: visible;
-	animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
-}
-
-@keyframes fadeIn {
-	from { 
-	bottom: 0;
-	opacity: 0;
-}
-to {
-	bottom: 30px;
-	opacity: 1;
-}
-}
-@keyframes fadeOut {
-	from { 
-	bottom: 30px;
-	opacity: 1;
-}
-to {
-	bottom: 0;
-	opacity: 0;
-}
-
-}
+/* Product Card Styling */
 .product-card {
-	background-color: rgba(255, 255, 255, 0.7); /* 30% transparency */
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	/* Optional shadow for better visibility */
-	border: 1px solid #283593;
-	border-radius: 8px; /* Rounded corners for better design */
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #283593;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative; /* Ensure products are on top of category list */
+  z-index: 1; /* Make sure cards are above category list */
 }
 
 .product-card:hover {
-	background-color: rgba(255, 255, 255, 0.9);
-	/* Slightly less transparent on hover */
-	background-color: #e2e2e2;
-	cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Price Cut Styling */
 .price-cut {
-	text-decoration: line-through;
-	color: #888;
+  text-decoration: line-through;
+  color: #888;
 }
 
 .price-label {
-	font-weight: bold;
+  font-weight: bold;
+  color: #283593;
 }
+
+/* Discount Label Styling */
+.discount-label {
+  color: #FF0000;
+  font-size: 10px !important;
+  font-style: italic !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Toast Notification */
+#toast {
+  min-width: 300px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -150px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  z-index: 1;
+  font-size: 16px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+}
+
+#toast.display {
+  visibility: visible;
+  animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+/* Login Card Styling */
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the card */
+    border-radius: 10px; /* Rounded corners for the card */
+}
+
+/* Login Card Header Styling */
+.card-header.custom-bg {
+    background-color: #0099ff; /* Set the background color of the card header to match the navbar */
+    color: white; /* Make text in the card header white */
+}
+/* Modal Header Styling */
+.modal-header {
+    background-color: #0099ff; /* Same as navbar background color */
+    color: white; /* White text for the header */
+    border-bottom: 1px solid #007acc; /* Optional: Border for separation */
+    padding-right: 15px; /* Adjust padding if needed */
+  text-align: center; /* Optional: Center the title */
+}
+
+/* Close Button Styling */
+.modal-header .close {
+    color: white; /* Make the close button white */
+    opacity: 0.9; /* Slightly transparent for better aesthetics */
+}
+
+.modal-header .close:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+

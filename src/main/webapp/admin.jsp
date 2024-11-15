@@ -1,3 +1,5 @@
+<%@page import="com.helper.Helper"%>
+<%@page import="java.util.Map"%>
 <%@page import="com.entities.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="com.helper.FactoryProvider"%>
@@ -18,6 +20,12 @@ if (user == null) {
 	}
 }
 %>
+<%
+CategoryDAO cdao = new CategoryDAO(FactoryProvider.getFactory());
+List<Category> list = cdao.getCategories();
+//getting count from helper
+Map<String,Long>m=Helper.getCounts(FactoryProvider.getFactory());
+%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -26,7 +34,25 @@ if (user == null) {
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Panel</title>
-<%@include file="Components/admin.jsp"%>
+<%@include file="Components/Common_CSS_JS.jsp"%>
+<style>
+
+  /* Set background image for the whole page */
+  body {
+    background-image: url('image/admin.jpg');
+    background-size:  cover;
+    background-position: center center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container-fluid {
+    background-color: rgba(255, 255, 255, 0.5); /* Optional: Light overlay for better readability */
+    border-radius: 10px;
+    padding: 20px;
+  }
+</style>
 </head>
 <body>
 	<!-- We have included navbar inside this panel also that meanse header -->
@@ -48,6 +74,7 @@ if (user == null) {
 							<img style="max-width: 125px" class="img-fluid"
 								src="image/Users.png" alt="user_icon">
 						</div>
+							<h1><%=m.get("userCount")%></h1>
 						<h1 class="text-uppercase  text-muted">Users</h1>
 						<!-- To uppercase the text use class -->
 					</div>
@@ -63,6 +90,7 @@ if (user == null) {
 							<img style="max-width: 125px" class="img-fluid"
 								src="image/List.png" alt="user_icon">
 						</div>
+						<h1><%= list.size()%></h1>
 						<h1 class="text-uppercase text-muted">Categories</h1>
 					</div>
 				</div>
@@ -77,6 +105,7 @@ if (user == null) {
 							<img style="max-width: 125px" class="img-fluid"
 								src="image/Product.png" alt="user_icon">
 						</div>
+						<h1><%=m.get("productCount")%></h1>
 						<h1 class="text-uppercase text-muted">Products</h1>
 					</div>
 				</div>
@@ -205,10 +234,7 @@ if (user == null) {
 								name="pQuantity">
 						</div>
 
-						<%
-						CategoryDAO cdao = new CategoryDAO(FactoryProvider.getFactory());
-						List<Category> list = cdao.getCategories();
-						%>
+
 						<!-- PRODUCT CATEGOR ENTITY -->
 						<!-- This is relationship from category class so we will fetch from that -->
 						<div class="form-group mb-3">

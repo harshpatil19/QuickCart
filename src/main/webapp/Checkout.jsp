@@ -15,6 +15,24 @@ if (user == null) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Checkout</title>
 <%@include file="Components/Common_CSS_JS.jsp"%>
+<style>
+
+  /* Set background image for the whole page */
+  body {
+    background-image: url('image/Checkout.jpg');
+    background-size:  cover;
+    background-position: center center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container-fluid {
+    background-color: rgba(255, 255, 255, 0.5); /* Optional: Light overlay for better readability */
+    border-radius: 10px;
+    padding: 20px;
+  }
+</style>
 </head>
 <body>
 	<%@include file="Components/Navbar.jsp"%>
